@@ -1,0 +1,265 @@
+import { Head, Appear, Image } from "mdx-deck";
+
+import { Invert, FullScreenCode, Horizontal } from "mdx-deck/layouts";
+import FlexList from "./components/FlexList";
+
+export { future as theme } from "mdx-deck/themes";
+
+## Hi, I'm Mat
+
+---
+
+https://welcoming-site.netlify.app/
+
+---
+
+<Image height="30rem" width="60rem" src="rebel.jpg" />
+
+---
+
+## Mat Dupont
+
+### R & D Technical Lead @ Rebel.com
+
+---
+
+## Twitter and Github
+
+@matldupont
+
+---
+
+# Inclusive components
+
+### Heydon Pickering
+
+---
+
+"The biggest misconception about accessibility is that by adding it you're doing somebody a favor. You're not, you're doing your job." ~ james williamson
+
+---
+
+## ARIA
+
+A standard for Accessible Rich Internet Applications
+
+---
+
+## UI Interactions
+
+Basically just showing and hiding stuff
+
+Popup menus, tooltips, disclosure widgets, accordions...
+
+---
+
+## Tabbed Interfaces
+
+---
+
+### A Story of Progressive Enhancement
+
+---
+
+Start with semantic HTML that works with standard browser behaviour.
+
+Enhancing with JS might not even be necessary.
+
+---
+
+### Tabbed Interfaces on the web
+
+Maybe a Table of Contents with some Sections?
+
+---
+
+- Table of contents -> tab list
+- Same-page links -> tabs
+- Sections -> tab panels
+
+---
+
+Unfolded, this would be structurally sound as an HTML document for a user to easily navigate.
+
+... but not what really what we're after
+
+---
+
+section:not(:target) { display: none; }
+
+Hides the content from screen readers. This gives a similar experience to all users.
+
+---
+
+## PROBLEM!
+
+If you link to sub sections, the parent wouldn't be the target and made visible on click.
+
+Enter some hefty JS.
+
+---
+
+## Let's remember
+
+---
+
+All this to show how you MIGHT create a tabbed interface on the web.
+
+---
+
+A table of contents isn't typically expected to show or hide elements.
+
+---
+
+_Consistency and expected behaviour are important and should be maintained for usability._
+
+---
+
+## True Tabbed Interfaces on the web
+
+---
+
+Same-page links have an edge in terms of simple and standard browser behaviours.
+
+Tabbed interfaces are a pattern borrowed from desktop applications.
+
+---
+
+The fact that they aren't native to the web should drive home the importance of _careful and deliberate design and \*ARIA semantics_
+
+---
+
+## The key difference
+
+Expected keyboard behaviour.
+
+ARIA semantics further complements the structure in order to alert screen reader users to the keyboard uses that are now expected.
+
+---
+
+### ARIA Roles
+
+- tablist -> doesn't delegate to children
+- tab
+- tabpanel
+- \*presentation -> removes semantic meaning
+
+---
+
+### More ARIA Stuff
+
+- aria-label
+- aria-labelledby links back to the link id for screen readers
+- aria-selected
+
+---
+
+## Keyboard Interactions and ARIA Authoring Pracices
+
+---
+
+1. Links move the user to the assciated content, but clicking a tab simply shows the content visually.
+
+Great for sighted users hoping to skim through the tabs quickly.
+
+\*You have to tab through all the tabs to get to the content
+
+---
+
+2. Solved by implementing functionality for the arrow keys to move between tabs and the tab key to enter the visible content then exist below.
+
+Tab is not for tabs... weird.
+
+---
+
+3.  Shift + Tab _should_ send them back to the selected tab with all others set to tabindex="-1"
+
+---
+
+4. Authoring Practices also mention loop-around functionality with arrow keys
+
+---
+
+DEMO TIME!
+
+---
+
+## PROBLEM!
+
+This is all helpful, but only if the user know how the interactions work as well as the keys to use.
+
+Not necessarily nor likely the case, even with blind, tech savvy users.
+
+---
+
+## PROBLEM!
+
+You can only tab into a panel that has interactive content.
+
+Fine for sighted users as they can see the content by skimming through the tabs as mentioned about.
+
+Screen reader users have to use additional screen reader functionality to get through each of the inactive tabs.
+
+---
+
+tabindex="0" on the tabpanels can make them focusable so the user can enter the panel from there.
+
+---
+
+## PROBLEM!
+
+Voiceover on macOS has issues with nested focusable elements.
+
+Tabbing would just move past the content inside the focusable panel to the next interactive element outside the panel.
+
+---
+
+This also goes against the general rule of avoiding making non-interactive elements focusable.
+
+It implies to the user that they should expect to interact with it.
+
+---
+
+aria-controls="panel-id" on the tab gives the ability to skip to the panel
+
+... but online in JAWS software. Not others.
+
+---
+
+## WHAT A MESS!
+
+Let's be realistic.
+
+---
+
+#### 20% OFF! -> ICECREAM
+
+[www.smashingmagazine.com/printed-books/inclusive-components/](https://www.smashingmagazine.com/printed-books/inclusive-components/)
+
+---
+
+## Conclusion
+
+Do user testing
+
+---
+
+The standard practices might fail your users.
+
+So, do user testing.
+
+---
+
+People might perceive and understand UI patterns in different ways.
+
+Therefore, try user testing.
+
+---
+
+You might have to adjust things to meet your users' needs
+
+... based on user testing.
+
+---
+
+# THANKS
